@@ -1,0 +1,101 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(245, 245, 245);
+}
+
+img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  user-select: none;
+  pointer-events: none;
+}
+
+.masonry-container {
+  --gap: 1rem;
+  --columns: 3;
+  display: column !important;
+  columns: var(--columns) !important;
+  gap: var(--gap) !important;
+}
+
+.masonry-container > * {
+  break-inside: avoid;
+  margin-bottom: var(--gap) !important;
+}
+
+/* Browser Support */
+@supports (grid-template-rows: masonry) {
+  .masonry-container {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    grid-template-rows: masonry !important;
+    grid-auto-flow: dense;
+  }
+  .masonry-container > * {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Hover Animations for Image Cards */
+.masonry-items {
+  position: relative;
+  cursor: pointer;
+}
+.hover-items {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
+  background-color: #00000080;
+  padding: 1rem;
+  color: #ffffff;
+  border-radius: 10px;
+}
+
+.masonry-items:hover .hover-items {
+  opacity: 1;
+}
+
+/* Media Queries */
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+  h1 {
+    font-size: 1.2rem !important;
+  }
+  .masonry-container {
+    --gap: 0.5rem;
+    --columns: 2;
+    display: column !important;
+    columns: var(--columns) !important;
+    gap: var(--gap) !important;
+  }
+  .hover-items h3 {
+    font-size: 18px !important;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .masonry-container {
+    --gap: 1rem;
+    --columns: 3;
+    display: column !important;
+    columns: var(--columns) !important;
+    gap: var(--gap) !important;
+  }
+  .hover-items h3 {
+    font-size: 25px !important;
+  }
+}
